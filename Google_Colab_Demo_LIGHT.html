@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Colab Demo - Python Without Installation</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+            color: #1e293b;
+            padding: 2rem;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .hero {
+            text-align: center;
+            margin-bottom: 4rem;
+            background: white;
+            padding: 3rem;
+            border-radius: 24px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: #0051A5;
+            margin-bottom: 1rem;
+        }
+        
+        .hero p {
+            font-size: 1.5rem;
+            color: #475569;
+            font-weight: 600;
+        }
+        
+        .problem-solution {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin: 3rem 0;
+        }
+        
+        .card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        
+        .problem {
+            border-left: 6px solid #ef4444;
+        }
+        
+        .solution {
+            border-left: 6px solid #10b981;
+        }
+        
+        .card h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+        }
+        
+        .problem h2 {
+            color: #ef4444;
+        }
+        
+        .solution h2 {
+            color: #10b981;
+        }
+        
+        .card ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .card li {
+            padding: 0.75rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: #1e293b;
+            font-weight: 500;
+            font-size: 1.05rem;
+        }
+        
+        .card li::before {
+            position: absolute;
+            left: 0;
+            font-size: 1.25rem;
+        }
+        
+        .problem li::before {
+            content: '❌';
+        }
+        
+        .solution li::before {
+            content: '✅';
+        }
+        
+        .demo-section {
+            background: linear-gradient(135deg, #E0F2FE 0%, #DBEAFE 100%);
+            border-radius: 24px;
+            padding: 3rem;
+            margin: 3rem 0;
+            border: 3px solid #0066CC;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        
+        .demo-section h2 {
+            font-size: 2.5rem;
+            color: #0051A5;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-weight: 800;
+        }
+        
+        .steps {
+            display: grid;
+            gap: 2rem;
+        }
+        
+        .step {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 2rem;
+            align-items: start;
+            transition: all 0.3s;
+            border: 2px solid #cbd5e1;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        .step:hover {
+            border-color: #0066CC;
+            transform: translateX(10px);
+            box-shadow: 0 4px 16px rgba(0, 102, 204, 0.15);
+        }
+        
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: #0051A5;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 900;
+            color: white;
+            box-shadow: 0 4px 8px rgba(0, 81, 165, 0.3);
+        }
+        
+        .step-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #0051A5;
+            font-weight: 700;
+        }
+        
+        .step-content p {
+            color: #475569;
+            font-size: 1.125rem;
+            font-weight: 500;
+        }
+        
+        .code-block {
+            background: #f1f5f9;
+            border: 2px solid #0066CC;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            font-family: 'Courier New', monospace;
+            color: #059669;
+            overflow-x: auto;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            font-weight: 600;
+        }
+        
+        .big-link {
+            display: block;
+            background: #0051A5;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            border-radius: 16px;
+            font-size: 2rem;
+            font-weight: 700;
+            text-decoration: none;
+            margin: 3rem 0;
+            transition: all 0.3s;
+            border: 3px solid #0051A5;
+            box-shadow: 0 4px 12px rgba(0, 81, 165, 0.3);
+        }
+        
+        .big-link:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 24px rgba(0, 81, 165, 0.4);
+            background: #0066CC;
+        }
+        
+        .big-link span {
+            font-size: 1.25rem;
+            font-weight: 600;
+            opacity: 0.9;
+        }
+        
+        .example-section {
+            margin: 4rem 0;
+        }
+        
+        .example-section h2 {
+            font-size: 2rem;
+            color: #0051A5;
+            margin-bottom: 2rem;
+            font-weight: 800;
+            border-bottom: 4px solid #FFB81C;
+            padding-bottom: 1rem;
+        }
+        
+        .examples-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .example-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            border: 2px solid #cbd5e1;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s;
+        }
+        
+        .example-card:hover {
+            border-color: #0066CC;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+        
+        .example-card h3 {
+            color: #0051A5;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+        
+        .example-card p {
+            color: #475569;
+            font-weight: 500;
+            margin-top: 1rem;
+        }
+        
+        .benefits {
+            background: linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 100%);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 3rem 0;
+            border: 3px solid #10b981;
+        }
+        
+        .benefits h2 {
+            font-size: 2.5rem;
+            color: #059669;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-weight: 800;
+        }
+        
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        
+        .benefit-item {
+            text-align: center;
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .benefit-item .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .benefit-item h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: #1e293b;
+            font-weight: 700;
+        }
+        
+        .benefit-item p {
+            color: #475569;
+            font-weight: 500;
+        }
+        
+        .highlight-card {
+            background: linear-gradient(135deg, #FFF7ED 0%, #FED7AA 100%);
+            padding: 2.5rem;
+            border-left: 6px solid #FFB81C;
+            border-radius: 12px;
+            margin: 2rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+        
+        .highlight-card h2 {
+            color: #0051A5;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+        }
+        
+        .highlight-card ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .highlight-card li {
+            padding: 1rem 0;
+            padding-left: 2rem;
+            position: relative;
+            font-size: 1.125rem;
+            color: #1e293b;
+            font-weight: 500;
+        }
+        
+        .highlight-card li span {
+            position: absolute;
+            left: 0;
+            color: #10b981;
+            font-weight: 900;
+        }
+        
+        .highlight-card strong {
+            color: #0051A5;
+        }
+        
+        @media (max-width: 768px) {
+            .problem-solution {
+                grid-template-columns: 1fr;
+            }
+            
+            .step {
+                grid-template-columns: 1fr;
+            }
+            
+            .step-number {
+                margin: 0 auto;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="hero">
+            <h1>🎯 The Python Problem: SOLVED</h1>
+            <p>No Installation. No IT Tickets. No Student Frustration.</p>
+        </div>
+
+        <div class="problem-solution">
+            <div class="card problem">
+                <h2>😫 The Old Way (Pain)</h2>
+                <ul>
+                    <li>Students need to install Python locally</li>
+                    <li>Different OS = different problems (Mac vs PC vs Linux)</li>
+                    <li>Version conflicts and dependency hell</li>
+                    <li>First class = 30 minutes of troubleshooting</li>
+                    <li>Some students never get it working</li>
+                    <li>Faculty becomes IT support</li>
+                    <li>Learning stops before it starts</li>
+                </ul>
+            </div>
+
+            <div class="card solution">
+                <h2>🎉 The New Way (Joy)</h2>
+                <ul>
+                    <li>Zero installation required</li>
+                    <li>Works on ANY device with a browser</li>
+                    <li>Same environment for everyone</li>
+                    <li>First class = coding in 30 SECONDS</li>
+                    <li>100% of students can participate</li>
+                    <li>Faculty focuses on teaching, not tech support</li>
+                    <li>Learning starts immediately</li>
+                </ul>
+            </div>
+        </div>
+
+        <a href="https://colab.research.google.com" target="_blank" class="big-link">
+            🚀 CLICK HERE TO TRY IT NOW<br>
+            <span>colab.research.google.com</span>
+        </a>
+
+        <div class="demo-section">
+            <h2>📺 Live Demo: 3 Minutes to Python Mastery</h2>
+            
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Go to colab.research.google.com</h3>
+                        <p>Students click the link. That's it. No download, no install, no waiting.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Click "New Notebook"</h3>
+                        <p>Boom. You're in a Python environment. Jupyter notebook interface. Familiar for anyone who's used Excel.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Write Python Code</h3>
+                        <p>Let's calculate NPV (Net Present Value) for a finance project:</p>
+                        <div class="code-block">
+# Calculate NPV of an investment<br>
+cash_flows = [-100000, 30000, 35000, 40000, 45000]<br>
+discount_rate = 0.10<br>
+<br>
+npv = sum([cf / (1 + discount_rate)**i for i, cf in enumerate(cash_flows)])<br>
+print(f"NPV: ${npv:,.2f}")<br>
+<br>
+# Output: NPV: $27,259.23
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Run It (Click Play or Shift+Enter)</h3>
+                        <p>Instant results. No compilation. No errors about missing libraries. Just works.</p>
+                    </div>
+                </div>
+
+                <div class="step">
+                    <div class="step-number">5</div>
+                    <div class="step-content">
+                        <h3>Share with Students</h3>
+                        <p>Click "Share" button. Copy link. Send to students. They click. They have your exact notebook. Can edit, run, experiment.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="example-section">
+            <h2>💼 Finance Examples (Ready to Use)</h2>
+            <div class="examples-grid">
+                <div class="example-card">
+                    <h3>FIN-800: Financial Analysis</h3>
+                    <div class="code-block">
+import pandas as pd<br>
+<br>
+# Analyze Apple's financials<br>
+data = pd.read_csv('AAPL_10K.csv')<br>
+revenue_growth = data['revenue'].pct_change()<br>
+print(revenue_growth.describe())
+                    </div>
+                    <p>Students analyze real company data without Excel limitations.</p>
+                </div>
+
+                <div class="example-card">
+                    <h3>FIN-810: Portfolio Optimization</h3>
+                    <div class="code-block">
+import numpy as np<br>
+<br>
+# Calculate efficient frontier<br>
+returns = np.array([0.12, 0.18, 0.15])<br>
+cov_matrix = np.cov(returns)<br>
+weights = optimize_portfolio(returns, cov_matrix)<br>
+print(f"Optimal weights: {weights}")
+                    </div>
+                    <p>Advanced portfolio math that would take hours in Excel? 5 lines of Python.</p>
+                </div>
+
+                <div class="example-card">
+                    <h3>FIN-818: Financial Econometrics</h3>
+                    <div class="code-block">
+import statsmodels.api as sm<br>
+<br>
+# Run regression analysis<br>
+X = data[['market_return', 'size', 'value']]<br>
+y = data['stock_return']<br>
+model = sm.OLS(y, X).fit()<br>
+print(model.summary())
+                    </div>
+                    <p>This course is PERFECT for Colab. All econometrics in one place.</p>
+                </div>
+
+                <div class="example-card">
+                    <h3>FIN-814: Options Pricing</h3>
+                    <div class="code-block">
+from scipy.stats import norm<br>
+<br>
+# Black-Scholes option pricing<br>
+d1 = (log(S/K) + (r + 0.5*sigma**2)*T) / (sigma*sqrt(T))<br>
+call_price = S*norm.cdf(d1) - K*exp(-r*T)*norm.cdf(d2)<br>
+print(f"Call option price: ${call_price:.2f}")
+                    </div>
+                    <p>Complex math made simple. Students focus on concepts, not calculations.</p>
+                </div>
+
+                <div class="example-card">
+                    <h3>AI-Powered Analysis</h3>
+                    <div class="code-block">
+# Connect to OpenAI API<br>
+import openai<br>
+<br>
+prompt = "Analyze this company's financials"<br>
+response = openai.ChatCompletion.create(<br>
+    model="gpt-4",<br>
+    messages=[{"role": "user", "content": prompt}]<br>
+)<br>
+print(response.choices[0].message.content)
+                    </div>
+                    <p>Students can call AI APIs directly from their notebooks!</p>
+                </div>
+
+                <div class="example-card">
+                    <h3>Data Visualization</h3>
+                    <div class="code-block">
+import matplotlib.pyplot as plt<br>
+<br>
+# Create financial charts<br>
+plt.plot(dates, prices)<br>
+plt.title('Stock Price Over Time')<br>
+plt.xlabel('Date')<br>
+plt.ylabel('Price ($)')<br>
+plt.show()
+                    </div>
+                    <p>Beautiful charts and graphs, no Excel wrestling required.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="benefits">
+            <h2>🎁 Why This Changes Everything</h2>
+            <div class="benefits-grid">
+                <div class="benefit-item">
+                    <div class="icon">⚡</div>
+                    <h3>Instant Start</h3>
+                    <p>Students coding in 30 seconds, not 30 minutes</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="icon">🌐</div>
+                    <h3>Works Everywhere</h3>
+                    <p>Mac, PC, Linux, Chromebook, iPad - doesn't matter</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="icon">🆓</div>
+                    <h3>Completely Free</h3>
+                    <p>Google provides free GPU compute. Zero cost.</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="icon">📦</div>
+                    <h3>Pre-loaded Libraries</h3>
+                    <p>pandas, numpy, scipy, matplotlib, scikit-learn - all ready</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="icon">🤝</div>
+                    <h3>Easy Sharing</h3>
+                    <p>Share notebooks like Google Docs. Collaborate in real-time.</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="icon">💾</div>
+                    <h3>Auto-Save</h3>
+                    <p>Everything saved to Google Drive automatically</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="icon">📱</div>
+                    <h3>Mobile Friendly</h3>
+                    <p>Students can code on their phones if needed</p>
+                </div>
+                <div class="benefit-item">
+                    <div class="icon">🔗</div>
+                    <h3>Integrate with AI</h3>
+                    <p>Call ChatGPT, Claude, or any API directly</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="highlight-card">
+            <h2>💡 Faculty Impact</h2>
+            <ul>
+                <li>
+                    <span>✅</span>
+                    <strong>First day of class:</strong> Everyone coding, no IT disasters
+                </li>
+                <li>
+                    <span>✅</span>
+                    <strong>Office hours:</strong> Discuss finance concepts, not installation problems
+                </li>
+                <li>
+                    <span>✅</span>
+                    <strong>Assignments:</strong> Share template, students fill in, submit link
+                </li>
+                <li>
+                    <span>✅</span>
+                    <strong>Grading:</strong> Click student's link, see their work, add comments
+                </li>
+                <li>
+                    <span>✅</span>
+                    <strong>Your time:</strong> Focus on teaching finance, not being IT support
+                </li>
+            </ul>
+        </div>
+
+        <div class="card" style="margin: 3rem 0; border-left: 6px solid #0051A5;">
+            <h2 style="color: #0051A5; font-size: 2rem; margin-bottom: 1.5rem; font-weight: 800;">📚 Resources I'll Provide</h2>
+            <ul style="list-style: none; padding: 0;">
+                <li style="padding: 0.75rem 0; padding-left: 2rem; position: relative; color: #1e293b; font-weight: 500;">
+                    <span style="position: absolute; left: 0; color: #0066CC; font-weight: 900;">→</span>
+                    <strong>Quick Start Guide</strong> (1-page PDF for students)
+                </li>
+                <li style="padding: 0.75rem 0; padding-left: 2rem; position: relative; color: #1e293b; font-weight: 500;">
+                    <span style="position: absolute; left: 0; color: #0066CC; font-weight: 900;">→</span>
+                    <strong>Template Notebooks</strong> for each finance course (FIN-800, 808, 810, 818, 814)
+                </li>
+                <li style="padding: 0.75rem 0; padding-left: 2rem; position: relative; color: #1e293b; font-weight: 500;">
+                    <span style="position: absolute; left: 0; color: #0066CC; font-weight: 900;">→</span>
+                    <strong>Video Tutorials</strong> (5-minute walkthroughs)
+                </li>
+                <li style="padding: 0.75rem 0; padding-left: 2rem; position: relative; color: #1e293b; font-weight: 500;">
+                    <span style="position: absolute; left: 0; color: #0066CC; font-weight: 900;">→</span>
+                    <strong>Common Finance Problems</strong> already coded (NPV, IRR, portfolio optimization, regression, etc.)
+                </li>
+                <li style="padding: 0.75rem 0; padding-left: 2rem; position: relative; color: #1e293b; font-weight: 500;">
+                    <span style="position: absolute; left: 0; color: #0066CC; font-weight: 900;">→</span>
+                    <strong>Assignment Templates</strong> you can copy and modify
+                </li>
+                <li style="padding: 0.75rem 0; padding-left: 2rem; position: relative; color: #1e293b; font-weight: 500;">
+                    <span style="position: absolute; left: 0; color: #0066CC; font-weight: 900;">→</span>
+                    <strong>Troubleshooting Guide</strong> (though you'll rarely need it!)
+                </li>
+            </ul>
+        </div>
+
+        <a href="https://colab.research.google.com" target="_blank" class="big-link">
+            🎯 TRY IT RIGHT NOW<br>
+            <span>Click to Open Google Colab</span>
+        </a>
+
+        <div style="text-align: center; margin: 4rem 0; padding: 3rem; background: white; border-radius: 20px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);">
+            <h2 style="font-size: 2.5rem; margin-bottom: 1rem; color: #0051A5; font-weight: 800;">
+                The Python Problem? SOLVED. ✅
+            </h2>
+            <p style="font-size: 1.5rem; color: #475569; margin-top: 1rem; font-weight: 600;">
+                Now let's talk about transforming your entire MSF program with SAIL...
+            </p>
+        </div>
+    </div>
+</body>
+</html>

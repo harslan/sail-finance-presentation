@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAIL for Finance: Transforming Finance Education with AI</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --suffolk-blue: #0051A5;
+            --suffolk-gold: #FFB81C;
+            --sail-blue: #0066CC;
+            --sail-purple: #6B46C1;
+            --sail-green: #059669;
+            --dark: #1e293b;
+            --light: #ffffff;
+            --gray: #475569;
+            --bg-light: #f8fafc;
+            --border: #cbd5e1;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+            color: var(--dark);
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--suffolk-blue);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        nav .nav-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        nav .logo {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: white;
+        }
+        
+        nav .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+        }
+        
+        nav a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Hero Section */
+        .hero {
+            margin-top: 6rem;
+            text-align: center;
+            padding: 4rem 2rem;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 900;
+            color: var(--suffolk-blue);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .hero .subtitle {
+            font-size: 1.5rem;
+            color: var(--gray);
+            margin-bottom: 2rem;
+        }
+        
+        .hero .meta {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .meta-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .meta-item .label {
+            font-size: 0.875rem;
+            color: var(--gray);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+        
+        .meta-item .value {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--suffolk-blue);
+        }
+        
+        /* Section Styles */
+        section {
+            margin: 4rem 0;
+            padding: 3rem;
+            background: white;
+            border-radius: 24px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border: 2px solid var(--border);
+        }
+        
+        section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--suffolk-blue);
+            font-weight: 800;
+            border-bottom: 4px solid var(--suffolk-gold);
+            padding-bottom: 1rem;
+        }
+        
+        section h3 {
+            font-size: 1.75rem;
+            margin: 2rem 0 1rem 0;
+            color: var(--suffolk-blue);
+            font-weight: 700;
+        }
+        
+        section p {
+            line-height: 1.8;
+            font-size: 1.125rem;
+            color: var(--dark);
+        }
+        
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .stat-card {
+            background: var(--bg-light);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 3px solid var(--sail-blue);
+            text-align: center;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 102, 204, 0.2);
+        }
+        
+        .stat-card .number {
+            font-size: 3rem;
+            font-weight: 900;
+            color: var(--suffolk-blue);
+        }
+        
+        .stat-card .label {
+            font-size: 1rem;
+            color: var(--gray);
+            margin-top: 0.5rem;
+            font-weight: 600;
+        }
+        
+        /* SAIL Pillars */
+        .sail-pillars {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .pillar {
+            background: var(--bg-light);
+            padding: 2.5rem;
+            border-radius: 20px;
+            border-left: 6px solid var(--sail-blue);
+            transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        .pillar:nth-child(2) { border-left-color: var(--sail-purple); }
+        .pillar:nth-child(3) { border-left-color: var(--sail-green); }
+        .pillar:nth-child(4) { border-left-color: var(--suffolk-gold); }
+        
+        .pillar:hover {
+            transform: translateX(10px);
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+        }
+        
+        .pillar-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .pillar h4 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+            font-weight: 700;
+        }
+        
+        .pillar p {
+            color: var(--gray);
+            line-height: 1.6;
+            font-size: 1.05rem;
+        }
+        
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding: 2rem 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: var(--suffolk-blue);
+        }
+        
+        .timeline-item {
+            display: flex;
+            margin: 3rem 0;
+            position: relative;
+        }
+        
+        .timeline-item:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+        
+        .timeline-content {
+            flex: 1;
+            padding: 2rem;
+            background: var(--bg-light);
+            border-radius: 16px;
+            margin: 0 2rem;
+            border: 3px solid var(--sail-blue);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        .timeline-content h3 {
+            color: var(--suffolk-blue);
+            margin-top: 0;
+            font-size: 1.5rem;
+        }
+        
+        .timeline-content ul {
+            margin: 1rem 0;
+            padding-left: 1.5rem;
+        }
+        
+        .timeline-content li {
+            margin: 0.75rem 0;
+            color: var(--dark);
+            font-weight: 500;
+        }
+        
+        .timeline-content p {
+            font-weight: 700;
+            color: var(--suffolk-blue);
+            margin-top: 1rem;
+        }
+        
+        .timeline-date {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--suffolk-blue);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 20px;
+            font-weight: 700;
+            white-space: nowrap;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Course Grid */
+        .course-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        
+        .course-card {
+            background: var(--bg-light);
+            padding: 2rem;
+            border-radius: 16px;
+            border: 2px solid var(--border);
+            transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        .course-card:hover {
+            border-color: var(--sail-blue);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .course-code {
+            display: inline-block;
+            background: var(--suffolk-blue);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+        
+        .course-card h4 {
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+            color: var(--dark);
+            font-weight: 700;
+        }
+        
+        .course-card ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .course-card li {
+            padding: 0.5rem 0;
+            color: var(--dark);
+            padding-left: 1.5rem;
+            position: relative;
+            font-weight: 500;
+        }
+        
+        .course-card li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--sail-green);
+            font-weight: 900;
+            font-size: 1.2rem;
+        }
+        
+        /* BEAM Section */
+        .beam-section {
+            background: linear-gradient(135deg, #FFF7ED 0%, #FEF3C7 100%);
+            border: 4px solid var(--suffolk-gold);
+        }
+        
+        .beam-section h2 {
+            color: var(--suffolk-blue);
+            border-bottom-color: var(--suffolk-gold);
+        }
+        
+        .beam-diagram {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 3rem 0;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .beam-node {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            text-align: center;
+            min-width: 200px;
+            border: 3px solid var(--suffolk-gold);
+            transition: all 0.3s;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .beam-node:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(255, 184, 28, 0.3);
+        }
+        
+        .beam-node .icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .beam-node h4 {
+            font-weight: 700;
+            color: var(--suffolk-blue);
+            margin: 0.5rem 0;
+        }
+        
+        .beam-node p {
+            color: var(--gray);
+            font-weight: 600;
+        }
+        
+        .beam-arrow {
+            font-size: 2rem;
+            color: var(--suffolk-gold);
+            font-weight: 900;
+        }
+        
+        /* ROI Section */
+        .roi-card {
+            background: linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 100%);
+            padding: 3rem;
+            border-radius: 20px;
+            border: 4px solid var(--sail-green);
+            margin: 2rem 0;
+        }
+        
+        .roi-card h3 {
+            color: var(--sail-green);
+            font-size: 2rem;
+        }
+        
+        .roi-numbers {
+            display: flex;
+            justify-content: space-around;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        
+        .roi-item {
+            text-align: center;
+        }
+        
+        .roi-item .big-number {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--sail-green);
+        }
+        
+        .roi-item .description {
+            font-size: 1rem;
+            color: var(--gray);
+            margin-top: 0.5rem;
+            font-weight: 600;
+        }
+        
+        /* CTA Buttons */
+        .cta-section {
+            text-align: center;
+            margin: 4rem 0;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 1.25rem 2.5rem;
+            margin: 0.5rem;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1.125rem;
+            text-decoration: none;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn-primary {
+            background: var(--suffolk-blue);
+            color: white;
+            box-shadow: 0 4px 12px rgba(0, 81, 165, 0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0, 81, 165, 0.4);
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: var(--suffolk-blue);
+            border: 3px solid var(--suffolk-gold);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--suffolk-gold);
+            color: white;
+        }
+        
+        /* Quote Box */
+        .quote-box {
+            background: linear-gradient(135deg, #FFF7ED 0%, #FEF3C7 100%);
+            padding: 2.5rem;
+            border-left: 6px solid var(--suffolk-gold);
+            border-radius: 12px;
+            margin: 2rem 0;
+            font-style: italic;
+            font-size: 1.25rem;
+            line-height: 1.6;
+            color: var(--dark);
+            font-weight: 500;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+        
+        .quote-attribution {
+            margin-top: 1rem;
+            font-style: normal;
+            font-weight: 700;
+            color: var(--suffolk-blue);
+        }
+        
+        /* Learning Goals Mapping */
+        .goals-grid {
+            display: grid;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .goal-item {
+            background: var(--bg-light);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--sail-blue);
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+            align-items: center;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        }
+        
+        .goal-name {
+            font-weight: 700;
+            font-size: 1.125rem;
+            color: var(--suffolk-blue);
+        }
+        
+        .goal-enhancement {
+            color: var(--dark);
+            font-weight: 500;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 3rem;
+            margin-top: 4rem;
+            border-top: 3px solid var(--border);
+            background: white;
+            border-radius: 24px;
+        }
+        
+        footer p {
+            color: var(--gray);
+            margin: 0.5rem 0;
+            font-weight: 600;
+        }
+        
+        /* Highlight */
+        .highlight {
+            background: #FEF3C7;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-weight: 700;
+            color: var(--suffolk-blue);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .timeline::before {
+                left: 20px;
+            }
+            
+            .timeline-item {
+                flex-direction: column !important;
+            }
+            
+            .timeline-date {
+                position: relative;
+                left: 0;
+                transform: none;
+                display: inline-block;
+                margin-bottom: 1rem;
+            }
+            
+            .beam-diagram {
+                flex-direction: column;
+            }
+            
+            .beam-arrow {
+                transform: rotate(90deg);
+            }
+            
+            .goal-item {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="nav-content">
+            <div class="logo">SAIL → MSF</div>
+            <div class="nav-links">
+                <a href="#overview">Overview</a>
+                <a href="#sail">SAIL Framework</a>
+                <a href="#integration">Integration</a>
+                <a href="#beam">BEAM</a>
+                <a href="#roi">ROI</a>
+                <a href="#next-steps">Next Steps</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- Hero -->
+        <div class="hero">
+            <h1>Expanding SAIL to Finance</h1>
+            <p class="subtitle">Transforming MSF Education with AI</p>
+            <div class="meta">
+                <div class="meta-item">
+                    <span class="label">Presented By</span>
+                    <span class="value">Hasan Arslan, Chief AI Officer</span>
+                </div>
+                <div class="meta-item">
+                    <span class="label">Date</span>
+                    <span class="value">Friday, November 1, 2025</span>
+                </div>
+                <div class="meta-item">
+                    <span class="label">Status</span>
+                    <span class="value">✅ AACSB Published</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Overview Section -->
+        <section id="overview">
+            <h2>🎯 The Opportunity</h2>
+            
+            <div class="quote-box">
+                "While other business schools try to copy our SAIL framework, we haven't fully extended it to one of Sawyer's strongest departments—Finance. This is our moment to lead."
+            </div>
+
+            <h3>Market Analysis: The Competitive Landscape</h3>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="number">18</div>
+                    <div class="label">MSF Programs Analyzed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">8</div>
+                    <div class="label">With Dedicated AI Courses</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">15%</div>
+                    <div class="label">Courses with AI/Tech Focus</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">85%</div>
+                    <div class="label">Gap = Our Opportunity</div>
+                </div>
+            </div>
+
+            <h3>Industry Demand</h3>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="number">+644%</div>
+                    <div class="label">AI Job Postings Growth (EAB Data)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">70%</div>
+                    <div class="label">Jobs Requiring AI Literacy</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">75%</div>
+                    <div class="label">Goldman Analysts Using ML Daily</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">100%</div>
+                    <div class="label">Our MSF Graduates AI-Ready</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SAIL Framework -->
+        <section id="sail">
+            <h2>🚢 The SAIL Framework</h2>
+            <p style="font-size: 1.25rem; color: var(--gray); margin-bottom: 2rem; font-weight: 600;">
+                Proven at Sawyer. Published by AACSB. Ready for Finance.
+            </p>
+
+            <div class="sail-pillars">
+                <div class="pillar">
+                    <div class="pillar-icon">👥</div>
+                    <h4>Social Intelligence</h4>
+                    <p>How do we connect with stakeholders? Communication, presentation, and professional interaction skills.</p>
+                </div>
+                <div class="pillar">
+                    <div class="pillar-icon">🤖</div>
+                    <h4>AI Literacy</h4>
+                    <p>How does AI work? Technical competence with tools, understanding capabilities and limitations.</p>
+                </div>
+                <div class="pillar">
+                    <div class="pillar-icon">🔍</div>
+                    <h4>Innovation/Inquiry</h4>
+                    <p>What's missing or wrong? Critical thinking, questioning AI outputs, identifying gaps and errors.</p>
+                </div>
+                <div class="pillar">
+                    <div class="pillar-icon">⚖️</div>
+                    <h4>Leadership</h4>
+                    <p>Should we do this? Ethics, responsibility, stakeholder impact, and sustainable decision-making.</p>
+                </div>
+            </div>
+
+            <div class="quote-box">
+                "What made the framework powerful wasn't any single pillar, but how all four reinforced each other."
+                <div class="quote-attribution">— AACSB Insights, October 2025</div>
+            </div>
+
+            <h3>SAIL + MSF Learning Goals: Perfect Alignment</h3>
+            <div class="goals-grid">
+                <div class="goal-item">
+                    <div class="goal-name">Analytical Reasoning</div>
+                    <div class="goal-enhancement">SAIL's Innovation/Inquiry pillar teaches students to critically evaluate AI's assumptions and conclusions, deepening analytical skills.</div>
+                </div>
+                <div class="goal-item">
+                    <div class="goal-name">Knowledge Integration</div>
+                    <div class="goal-enhancement">AI projects naturally require integrating corporate finance, investments, and risk management—exactly what MSF emphasizes.</div>
+                </div>
+                <div class="goal-item">
+                    <div class="goal-name">Ethics</div>
+                    <div class="goal-enhancement">SAIL's Leadership pillar makes ethics real and immediate. Students confront actual ethical dilemmas in AI-powered finance.</div>
+                </div>
+                <div class="goal-item">
+                    <div class="goal-name">Oral Communication</div>
+                    <div class="goal-enhancement">Social Intelligence pillar: Students present AI-driven insights to diverse stakeholders, from executives to technical teams.</div>
+                </div>
+                <div class="goal-item">
+                    <div class="goal-name">Written Communication</div>
+                    <div class="goal-enhancement">Students write sophisticated analyses that synthesize AI-generated insights with human judgment and critical evaluation.</div>
+                </div>
+                <div class="goal-item">
+                    <div class="goal-name">Technical Competence</div>
+                    <div class="goal-enhancement">AI Literacy pillar ensures MSF graduates are Day 1 ready with modern finance tools employers demand.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Integration -->
+        <section id="integration">
+            <h2>🔗 Integration with MSF Curriculum</h2>
+            
+            <h3>Core Courses Enhancement (Not Replacement!)</h3>
+            <div class="course-grid">
+                <div class="course-card">
+                    <div class="course-code">FIN-800</div>
+                    <h4>Financial Statement Analysis</h4>
+                    <ul>
+                        <li>AI for data extraction from 10-Ks</li>
+                        <li>Automated ratio analysis and trends</li>
+                        <li>AI-powered valuation models</li>
+                        <li>Critical evaluation of AI forecasts</li>
+                    </ul>
+                </div>
+                <div class="course-card">
+                    <div class="course-code">FIN-808</div>
+                    <h4>General Theory Corporate Finance</h4>
+                    <ul>
+                        <li>AI for capital budgeting at scale</li>
+                        <li>M&A due diligence automation</li>
+                        <li>What AI can't assess (culture, management)</li>
+                        <li>Strategic decisions about AI investment</li>
+                    </ul>
+                </div>
+                <div class="course-card">
+                    <div class="course-code">FIN-810</div>
+                    <h4>Investment Analysis</h4>
+                    <ul>
+                        <li>Robo-advisors and portfolio optimization</li>
+                        <li>AI for market sentiment analysis</li>
+                        <li>Alternative data processing</li>
+                        <li>When ML models fail</li>
+                    </ul>
+                </div>
+                <div class="course-card">
+                    <div class="course-code">FIN-818</div>
+                    <h4>Financial Econometrics</h4>
+                    <ul>
+                        <li>Python in Google Colab (no installation!)</li>
+                        <li>Traditional econometrics + ML comparison</li>
+                        <li>Time series forecasting with AI</li>
+                        <li>Understanding tradeoffs</li>
+                    </ul>
+                </div>
+                <div class="course-card">
+                    <div class="course-code">FIN-820</div>
+                    <h4>Financial Policy (Capstone)</h4>
+                    <ul>
+                        <li>Major AI-powered project</li>
+                        <li>Finance Prompt Challenge participation</li>
+                        <li>All four SAIL pillars demonstrated</li>
+                        <li>Portfolio-building outcome</li>
+                    </ul>
+                </div>
+                <div class="course-card">
+                    <div class="course-code">NEW!</div>
+                    <h4>AI for Financial Decision Making</h4>
+                    <ul>
+                        <li>Required elective for all MSF students</li>
+                        <li>Hands-on with GenAI, ML, automation</li>
+                        <li>Real company projects</li>
+                        <li>SAIL framework throughout</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Perfect Fit with Concentrations</h3>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="number">FinTech</div>
+                    <div class="label">AI IS FinTech - Perfect Alignment</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">Corporate</div>
+                    <div class="label">M&A, Cap Budgeting with AI</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">Investments</div>
+                    <div class="label">Robo-Advisors, Algo Trading</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">Risk Mgmt</div>
+                    <div class="label">Fraud Detection, Credit Scoring</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- BEAM Section -->
+        <section id="beam" class="beam-section">
+            <h2>🤖 BEAM: The Future Possibility</h2>
+            <p style="font-size: 1.25rem; margin-bottom: 2rem; font-weight: 600;">
+                <span class="highlight">No decision needed today</span> - but let me share where this could go...
+            </p>
+
+            <h3>The Revolutionary Partnership Model</h3>
+            <div class="beam-diagram">
+                <div class="beam-node">
+                    <div class="icon">🏦</div>
+                    <h4>Fidelity</h4>
+                    <p>Sponsors robot</p>
+                    <p>$75K investment</p>
+                </div>
+                <div class="beam-arrow">→</div>
+                <div class="beam-node">
+                    <div class="icon">🤖</div>
+                    <h4>Arche Robotics</h4>
+                    <p>Provides platform</p>
+                    <p>Technical support</p>
+                </div>
+                <div class="beam-arrow">→</div>
+                <div class="beam-node">
+                    <div class="icon">👨‍🎓</div>
+                    <h4>MSF Students</h4>
+                    <p>Build AI apps</p>
+                    <p>Portfolio projects</p>
+                </div>
+                <div class="beam-arrow">→</div>
+                <div class="beam-node">
+                    <div class="icon">💼</div>
+                    <h4>Everyone Wins</h4>
+                    <p>Jobs + Innovation</p>
+                    <p>+ Recognition</p>
+                </div>
+            </div>
+
+            <h3>What Students Would Build</h3>
+            <div class="course-grid">
+                <div class="course-card">
+                    <h4>🗣️ Customer Service Bot</h4>
+                    <p>AI-powered conversational interface for branch operations. Natural language processing for customer inquiries.</p>
+                </div>
+                <div class="course-card">
+                    <h4>📊 Robo-Advisor</h4>
+                    <p>Automated investment advice for young investors. Portfolio optimization and risk assessment.</p>
+                </div>
+                <div class="course-card">
+                    <h4>🔒 Fraud Detection</h4>
+                    <p>ML-powered transaction monitoring. Real-time anomaly detection and compliance.</p>
+                </div>
+                <div class="course-card">
+                    <h4>📈 Market Analysis</h4>
+                    <p>Sentiment analysis of news and social media. Pattern recognition in financial data.</p>
+                </div>
+            </div>
+
+            <div class="quote-box">
+                "Instead of 'I took a course on AI,' students say: 'I built a customer service robot for Fidelity. Here's my GitHub, here's the demo, here's the ROI analysis.' That student gets the job. Every time."
+            </div>
+
+            <h3>The Value Proposition</h3>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="number">For Fidelity</div>
+                    <div class="label">Innovation + Talent Pipeline</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">For Students</div>
+                    <div class="label">Portfolio → Job Offers</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">For Sawyer</div>
+                    <div class="label">Only MSF Program Doing This</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">Timeline</div>
+                    <div class="label">Explore if SAIL Succeeds</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Implementation Timeline -->
+        <section>
+            <h2>📅 Implementation Roadmap</h2>
+            
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">Spring 2026</div>
+                    <div class="timeline-content">
+                        <h3>Proof of Concept</h3>
+                        <ul>
+                            <li><strong>January:</strong> Faculty workshop (solve Python problem!)</li>
+                            <li><strong>February:</strong> Finance Prompt Challenge launches</li>
+                            <li><strong>March:</strong> 3-5 faculty pilot AI integration</li>
+                            <li><strong>April:</strong> Assess results, student feedback</li>
+                            <li><strong>May:</strong> Decision: Scale or adjust?</li>
+                        </ul>
+                        <p><strong>Budget: $27,200</strong></p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">Summer 2026</div>
+                    <div class="timeline-content">
+                        <h3>Preparation for Scale</h3>
+                        <ul>
+                            <li><strong>June:</strong> Faculty intensive training (2 days)</li>
+                            <li><strong>July:</strong> "AI for Financial Decision Making" course development</li>
+                            <li><strong>August:</strong> Curriculum committee approval</li>
+                        </ul>
+                        <p><strong>Budget: $28,000</strong></p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">Fall 2026</div>
+                    <div class="timeline-content">
+                        <h3>Full Implementation</h3>
+                        <ul>
+                            <li>New AI course launches (required elective)</li>
+                            <li>50%+ of courses have AI integration</li>
+                            <li>Marketing: "AI-Ready MSF"</li>
+                            <li>Second Finance Prompt Challenge</li>
+                        </ul>
+                        <p><strong>Budget: $34,000</strong></p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">2027+</div>
+                    <div class="timeline-content">
+                        <h3>National Leadership</h3>
+                        <ul>
+                            <li>Advanced electives and specialization tracks</li>
+                            <li>BEAM pilot (if corporate sponsor secured)</li>
+                            <li>Conference presentations and publications</li>
+                            <li>Sawyer Finance = The Model</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ROI Section -->
+        <section id="roi">
+            <h2>💰 Return on Investment</h2>
+            
+            <div class="roi-card">
+                <h3>The Business Case</h3>
+                <div class="roi-numbers">
+                    <div class="roi-item">
+                        <div class="big-number">$90K</div>
+                        <div class="description">Year 1 Investment</div>
+                    </div>
+                    <div class="roi-item">
+                        <div class="big-number">+25%</div>
+                        <div class="description">Application Increase</div>
+                    </div>
+                    <div class="roi-item">
+                        <div class="big-number">$1.65M</div>
+                        <div class="description">3-Year Net Revenue</div>
+                    </div>
+                    <div class="roi-item">
+                        <div class="big-number">1,833%</div>
+                        <div class="description">ROI</div>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Beyond Financial Returns</h3>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="number">🎯</div>
+                    <div class="label">Better Job Placement</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">🏆</div>
+                    <div class="label">Rankings Boost</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">🤝</div>
+                    <div class="label">Industry Partnerships</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">🌟</div>
+                    <div class="label">National Recognition</div>
+                </div>
+            </div>
+
+            <div class="quote-box">
+                "If we attract just 15 more students due to AI differentiation, that's $900K in tuition revenue. Over three years: $2.7M. Less $154K investment = $2.5M net benefit. This isn't spending—it's investing."
+            </div>
+        </section>
+
+        <!-- Next Steps -->
+        <section id="next-steps">
+            <h2>🚀 What Happens Next?</h2>
+            
+            <h3>Immediate Actions (If We Move Forward)</h3>
+            <div class="course-grid">
+                <div class="course-card">
+                    <h4>📅 This Week</h4>
+                    <ul>
+                        <li>Secure support from Finance Department</li>
+                        <li>Identify 3-5 early adopter faculty</li>
+                        <li>Present to Dean Amy Zeng</li>
+                        <li>Form Finance SAIL Task Force</li>
+                    </ul>
+                </div>
+                <div class="course-card">
+                    <h4>📅 December</h4>
+                    <ul>
+                        <li>Schedule faculty workshop for January</li>
+                        <li>Design Finance Prompt Challenge details</li>
+                        <li>Budget officially allocated</li>
+                        <li>Student recruitment begins</li>
+                    </ul>
+                </div>
+                <div class="course-card">
+                    <h4>📅 January</h4>
+                    <ul>
+                        <li>Faculty workshop (Python problem solved!)</li>
+                        <li>Early adopters finalize integrations</li>
+                        <li>Finance Prompt Challenge announced</li>
+                        <li>Energy and excitement builds</li>
+                    </ul>
+                </div>
+                <div class="course-card">
+                    <h4>📅 February</h4>
+                    <ul>
+                        <li>Pilot integrations begin</li>
+                        <li>Challenge kicks off (5 weeks)</li>
+                        <li>Monthly faculty learning community</li>
+                        <li>We're off to the races! 🏁</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Three Possible Paths</h3>
+            <div class="goals-grid">
+                <div class="goal-item">
+                    <div class="goal-name">Conservative</div>
+                    <div class="goal-enhancement">SAIL integration only. Still excellent outcome. Differentiates MSF from peers. Low risk.</div>
+                </div>
+                <div class="goal-item">
+                    <div class="goal-name">Moderate</div>
+                    <div class="goal-enhancement">SAIL + new AI course. Strong differentiation. "AI-Ready MSF" brand. Clear competitive advantage.</div>
+                </div>
+                <div class="goal-item">
+                    <div class="goal-name">Ambitious</div>
+                    <div class="goal-enhancement">SAIL + AI course + BEAM lab. National leadership. Only MSF program doing this. Legendary.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Call to Action -->
+        <section class="cta-section">
+            <h2>The Choice Is Yours</h2>
+            <p style="font-size: 1.5rem; margin: 2rem 0; color: var(--gray); font-weight: 600;">
+                Other schools will eventually do this.<br>
+                The question is: <span class="highlight">Do we lead or follow?</span>
+            </p>
+            
+            <div class="quote-box">
+                "We have a proven framework (SAIL), institutional support, industry connections, and a strong MSF foundation. We have everything we need to become the AI-ready finance program that others try to copy. Let's build something extraordinary together."
+                <div class="quote-attribution">— Hasan Arslan, Chief AI Officer</div>
+            </div>
+
+            <div style="margin-top: 3rem;">
+                <a href="#" class="btn btn-primary">I'm Ready to Lead</a>
+                <a href="#" class="btn btn-secondary">Let's Discuss</a>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <p><strong>Hasan Arslan</strong> | Chief AI Officer | Suffolk University</p>
+        <p>📧 hasanarslan@suffolk.edu | 📱 Contact via Teams</p>
+        <p style="margin-top: 1.5rem; color: var(--gray);">
+            Presentation created November 2025 • Based on AACSB-published SAIL framework
+        </p>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
